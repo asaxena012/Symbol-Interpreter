@@ -1,6 +1,11 @@
+* {
+  background-color: #d8e2dc;
+}
+
 .App {
   font-family: sans-serif;
   text-align: center;
+  color: #2b2d42;
 }
 
 input {
