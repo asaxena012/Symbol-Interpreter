@@ -17,25 +17,48 @@ const symbolEmojiDictionary = {
   "☣️": "Biohazard",
   "♉": "Taurus",
   "〽️": "Part Alternation Mark",
-  "☸": "Wheel of Dharma"
+  "☸": "Wheel of Dharma",
+  "🚾": "Water Closet",
+  "💤": "Zzz",
+  "🚸": "Children Crossing",
+  "💲": "Heavy Dollar Sign"
 };
 
 export default function App() {
-  const [meaning, setMeaning] = useState("Enter a symbol emoji to intepret");
+  const [meaning, setMeaning] = useState(null);
 
   const symbolArray = Object.keys(symbolEmojiDictionary);
 
-  const inputChangeHandler = (event) => {};
+  const inputChangeHandler = (event) => {
+    const emoji = event.target.value;
+    const meaning = symbolEmojiDictionary[emoji];
+
+    if (!meaning) {
+      setMeaning("Oops! This one seems out of syllabus");
+    } else {
+      setMeaning(`${emoji} : ${meaning}`);
+    }
+
+    if (emoji === "") setMeaning(null);
+  };
+
+  const clickEmojiHandler = (emoji) => {
+    setMeaning(`${emoji} : ${symbolEmojiDictionary[emoji]}`);
+  };
 
   return (
     <div className="App">
       <h1>Symbols and their meanings!</h1>
       <input onChange={inputChangeHandler} />
 
-      <h2>{meaning}</h2>
+      <h2>{meaning ? meaning : "Enter a symbol to intepret its meaning"}</h2>
       <div className="flex-container">
         {symbolArray.map((item) => {
-          return <span className="emoji">{item}</span>;
+          return (
+            <span onClick={() => clickEmojiHandler(item)} className="emoji">
+              {item}
+            </span>
+          );
         })}
       </div>
     </div>
