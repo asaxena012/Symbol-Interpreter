@@ -33,9 +33,11 @@ export default function App() {
       <input onChange={inputChangeHandler} />
 
       <h2>{meaning}</h2>
-      {symbolArray.map((item) => {
-        return <span className="emoji">{item}</span>;
-      })}
+      <div className="flex-container">
+        {symbolArray.map((item) => {
+          return <span className="emoji">{item}</span>;
+        })}
+      </div>
     </div>
   );
 }
